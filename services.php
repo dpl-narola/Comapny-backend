@@ -22,11 +22,8 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
     try {
         $curl = curl_init();
         $url = 'https://app.iformbuilder.com/exzact/api/v60/profiles/502813/pages/3838090/records?fields=company_name,category,register_date,annual_trunover&limit=100&offset=0&subform_order=desc';
-        $token = '';
         $data = array();
-        if (generate_new_token() != false) {
-            $token = generate_new_token();
-        }
+        $token = generate_new_token();
         curl_setopt_array($curl,
                 array(
                     CURLOPT_URL => $url,
@@ -61,11 +58,9 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
     try {
         $curl = curl_init();
         $url = 'https://app.iformbuilder.com/exzact/api/v60/profiles/self/pages/3838090/records';
-        $token = '';
+        $token = generate_new_token();
         $data = array();
-        if (generate_new_token() != false) {
-            $token = generate_new_token();
-        }
+        
         curl_setopt_array($curl,
                 array(
                     CURLOPT_URL => $url,
