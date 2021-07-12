@@ -26,10 +26,6 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
         $data = array();
         if (generate_new_token() != false) {
             $token = generate_new_token();
-        } else {
-            $data['response'] ='token invalid';
-            echo json_encode($data, true);
-            return false;
         }
         curl_setopt_array($curl,
                 array(
@@ -69,10 +65,6 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
         $data = array();
         if (generate_new_token() != false) {
             $token = generate_new_token();
-        } else {
-            $data['response'] ='token invalid';
-            echo json_encode($data, true);
-            return false;
         }
         curl_setopt_array($curl,
                 array(
