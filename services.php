@@ -11,6 +11,7 @@ if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] != ''){
 }
 
 include 'genral.php';
+if (isset($_GET['type'])){
 /**
  * @name retrieve_list_of_records
  * @uses This method is using for retriving records
@@ -22,10 +23,13 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
         $curl = curl_init();
         $url = 'https://app.iformbuilder.com/exzact/api/v60/profiles/502813/pages/3838090/records?fields=company_name,category,register_date,annual_trunover&limit=100&offset=0&subform_order=desc';
         $token = '';
+        $data = array();
         if (generate_new_token() != false) {
             $token = generate_new_token();
         } else {
-            
+            $data['response'] ='token invalid';
+            echo json_encode($data, true);
+            return false;
         }
         curl_setopt_array($curl,
                 array(
@@ -41,7 +45,7 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
                     CURLOPT_HTTPHEADER => array('Authorization: Bearer ' . $token)
                 )
         );
-        $data = array();
+        
         $response = curl_exec($curl);
         curl_close($curl);
         $data['response'] = json_decode($response, true);
@@ -62,10 +66,13 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
         $curl = curl_init();
         $url = 'https://app.iformbuilder.com/exzact/api/v60/profiles/self/pages/3838090/records';
         $token = '';
+        $data = array();
         if (generate_new_token() != false) {
             $token = generate_new_token();
         } else {
-            return response()->json(compact('token invalid'), 500);
+            $data['response'] ='token invalid';
+            echo json_encode($data, true);
+            return false;
         }
         curl_setopt_array($curl,
                 array(
@@ -91,5 +98,6 @@ if ($_GET['type'] == 'retrieve_list_of_records') {
     } catch (Exception $e) {
         print_r($e->getMessage());
     }
+}
 }
 ?>
