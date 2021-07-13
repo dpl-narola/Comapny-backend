@@ -1,6 +1,6 @@
 <?php
 /**
- * @uses This file is managing for iform builder apis
+ * @uses This file is using for iform builder apis
  * @author DPL
  */
 if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] != ''){
