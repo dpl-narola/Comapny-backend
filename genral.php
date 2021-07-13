@@ -3,14 +3,13 @@ define('API_URL', 'https://app.iformbuilder.com/exzact/api/');
 define('VERSION', 'v60');
 define('PROFILE_ID', '502813');
 define('PAGE_ID', '3838090');
-
 /**
  * @name generate_new_token
  * @return json array
  * @author DPL
  */
 function generate_new_token() {
-    $url = 'https://app.iformbuilder.com/exzact/api/oauth/token';
+    $url = API_URL.'oauth/token';
     $iat = time();
     $exp = time() + 300;
     // Create token header as a JSON string
@@ -19,7 +18,7 @@ function generate_new_token() {
     // Create token payload as a JSON string
     $payload_arr = [
         "iss" => "d0998459cf1c861e6ec1a5f92b08bf3bf0a2697b",
-        "aud" => "https://app.iformbuilder.com/exzact/api/oauth/token",
+        "aud" => $url,
         "exp" => $exp,
         "iat" => $iat
     ];
@@ -67,4 +66,5 @@ function api_call($url,$method,$param_arr){
     $response = curl_exec($curl);
     curl_close($curl);
     return json_decode($response, true);
-}?>
+}
+?>
