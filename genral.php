@@ -46,7 +46,10 @@ function generate_new_token() {
 }
 /**
  * @name generate_new_token
- * @return json array
+ * @param  $url        API Url 
+ * @param  $method     method(GET/POST) 
+ * @param  $param_arr  Parameters for curl   
+ * @return json        array
  * @author DPL
  */
 function api_call($url,$method,$param_arr){
